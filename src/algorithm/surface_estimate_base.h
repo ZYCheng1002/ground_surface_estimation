@@ -5,9 +5,10 @@
 #ifndef GROUND_SURFACE_ESTIMATION_SURFACE_ESTIMATE_BASE_H
 #define GROUND_SURFACE_ESTIMATION_SURFACE_ESTIMATE_BASE_H
 
-#include "common_param.h"
+#include "base_param.h"
 
 class Estimator {
+ public:
   using Measurements = Eigen::Matrix3Xf;
   using Weights = Eigen::VectorXf;
 
@@ -41,8 +42,11 @@ class Estimator {
   /// todo: Get Surface
 
  protected:
-  EstimateParam estimate_param_;
+  virtual void AddMeasurements_(int num_measurements) = 0;
+  virtual void ClearMeasurements_() = 0;
+  virtual void SetWeights_();
 
+  EstimateParam estimate_param_;
   Measurements measurements_;
   Weights weights_;
 };
