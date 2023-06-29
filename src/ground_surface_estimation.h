@@ -4,12 +4,14 @@
 
 #ifndef GROUND_SURFACE_ESTIMATION_GROUND_SURFACE_ESTIMATION_H
 #define GROUND_SURFACE_ESTIMATION_GROUND_SURFACE_ESTIMATION_H
-#include "algorithm/surface_estimate_base.h"
 #include <memory>
 
+#include "algorithm/surface_estimate_base.h"
+struct GroundParam;
 
 class GroundEstimator {
-  GroundEstimator(const EstimateParam&);
+ public:
+  GroundEstimator(const GroundParam&);
 
   virtual ~GroundEstimator() = default;
 
