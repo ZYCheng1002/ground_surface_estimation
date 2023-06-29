@@ -7,9 +7,9 @@
 #include <yaml-cpp/yaml.h>
 
 struct SacParam{
-    SacParam(const YAML::Node& node){
-        /// todo:
-    }
+//    SacParam(const YAML::Node& node){
+//        /// todo:
+//    }
     bool optimize_coefficients{true};
     float inlier_threshold{0.2};
     float eps_angle{0.01};

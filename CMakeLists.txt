@@ -8,5 +8,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -g -ggdb ${CMAKE_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS_DEBUG "-g ${CMAKE_CXX_FLAGS}")
 
 include(cmake/packages.cmake)
+include_directories(src)
 
 add_subdirectory(src)
+add_subdirectory(test)

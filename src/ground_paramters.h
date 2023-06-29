@@ -10,6 +10,9 @@
 struct GroundParam {
   EstimateParam estimate_param;
   SacParam sac_param;
+  float mu = 1;
+  float distance_threshold = 1;
+  size_t  num_iterations = 3;
 };
 
 #endif  // GROUND_SURFACE_ESTIMATION_GROUND_PARAMTERS_H

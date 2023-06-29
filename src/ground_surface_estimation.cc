@@ -4,10 +4,9 @@
 
 #include "ground_surface_estimation.h"
 #include "algorithm/surface_estimate_sac.h"
-#include "ground_paramters.h"
 
 GroundEstimator::GroundEstimator(const GroundParam& param) {
   /// 测试: sac
-   estimator_ = std::make_unique<SurfaceEstimateSac>(param.sac_param, param.estimate_param);
-
+  estimator_ = std::make_unique<SurfaceEstimateSac>(param.sac_param, param.estimate_param);
+  param_ = param;
 }

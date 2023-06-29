@@ -7,7 +7,7 @@
 #include <memory>
 
 #include "algorithm/surface_estimate_base.h"
-struct GroundParam;
+#include "ground_paramters.h"
 
 class GroundEstimator {
  public:
@@ -22,8 +22,9 @@ class GroundEstimator {
   virtual void AddMeasurements(const Estimator::Measurements&) = 0;
 
  protected:
-  EstimateParam param_;
+  GroundParam param_;
   std::unique_ptr<Estimator> estimator_ = nullptr;
+  float mu_{1};
 };
 
 #endif  // GROUND_SURFACE_ESTIMATION_GROUND_SURFACE_ESTIMATION_H

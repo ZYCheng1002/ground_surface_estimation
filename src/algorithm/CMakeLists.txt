@@ -1,3 +1,2 @@
-# 为了在clion中方便编码,临时增加
-# TODO:
-add_library(base SHARED surface_estimate_base.cc surface_estimate_sac.cc)
+add_library(${PROJECT_NAME}.estimate SHARED surface_estimate_base.cc surface_estimate_sac.cc)
+target_link_libraries(${PROJECT_NAME}.estimate ${ThirdParty})
