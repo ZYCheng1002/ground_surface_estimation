@@ -16,4 +16,9 @@ using PointXYZI = pcl::PointXYZI;
 using CloudXYZIType = pcl::PointCloud<PointXYZI>;
 using CloudXYZITypePtr = CloudXYZIType::Ptr;
 
+struct GroundSeparateInfo {
+  CloudXYZIType without_ground_cloud;
+  CloudXYZIType ground_cloud;
+};
+
 #endif  // GROUND_SURFACE_ESTIMATION_POINT_TYPE_H
