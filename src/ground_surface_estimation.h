@@ -12,7 +12,7 @@
 
 class GroundEstimator {
  public:
-  GroundEstimator(const GroundParam&);
+  explicit GroundEstimator(const GroundParam&);
 
   virtual ~GroundEstimator() = default;
 

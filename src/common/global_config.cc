@@ -17,4 +17,5 @@ bool GlobalConfig::LoadConfig(const std::string& yaml_path) {
     g_config.reset(new GlobalConfig);
   }
   g_config->yaml_io_ = std::make_shared<YAML_IO>(yaml_path);
+  return true;
 }

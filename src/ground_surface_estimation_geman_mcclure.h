@@ -7,7 +7,7 @@
 #include "ground_surface_estimation.h"
 class GroundEstimatorGM : public GroundEstimator{
  public:
-  GroundEstimatorGM(const GroundParam&);
+  explicit GroundEstimatorGM(const GroundParam&);
 
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 

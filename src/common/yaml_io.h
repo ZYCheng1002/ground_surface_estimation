@@ -1,5 +1,5 @@
 //
-// Created by idriver-czy on 2023/6/30.
+// Created by czy on 2023/6/30.
 //
 
 #ifndef GROUND_SURFACE_ESTIMATION_YAML_IO_H
@@ -10,7 +10,7 @@
 
 class YAML_IO {
  public:
-  YAML_IO(const std::string& path) {
+  explicit YAML_IO(const std::string& path) {
     path_ = path;
     yaml_node_ = YAML::LoadFile(path_);
     if (yaml_node_.IsNull()){
