@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "algorithm/surface_estimate_base.h"
+#include "common/system_common.h"
 #include "ground_paramters.h"
 
 class GroundEstimator {
@@ -19,7 +20,24 @@ class GroundEstimator {
 
   virtual void Estimate() = 0;
 
-  virtual void AddMeasurements(const Estimator::Measurements&) = 0;
+  virtual void AddMeasurements(const Measurements&) = 0;
+
+  GroundSurface::Ptr GetGroundSurface() const;
+
+  virtual bool HasMeasurements() const;
+
+  virtual void ClearMeasurements();
+
+  const Measurements& GetMeasurements() const;
+
+  const Weights& GetWeights() const;
+
+  const float& GetMu() const;
+
+  void Reset();
+
+ protected:
+  std::unique_ptr<Estimator> CreateImpl(const SurfaceMethod& method);
 
  protected:
   GroundParam param_;

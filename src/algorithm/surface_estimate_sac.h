@@ -15,7 +15,7 @@ class SurfaceEstimateSac : public Estimator {
   using Plane = Eigen::Hyperplane<float, 3>;
   SurfaceEstimateSac(const SacParam&, const EstimateParam&);
   void Estimate() final;
-  // std::unique_ptr<GroundSurface> getGroundSurface() const final;
+  std::unique_ptr<GroundSurface> GetGroundSurface() const final;
   void Reset() final;
 
  private:

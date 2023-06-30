@@ -8,12 +8,14 @@
 
 Estimator::Estimator(const EstimateParam& param) : estimate_param_(param) {}
 
+Estimator::~Estimator() = default;
+
 void Estimator::AddMeasurements(const Measurements& measurements) {
   AddMeasurements(measurements, Eigen::VectorXf::Ones(measurements.cols()));
 }
 
-void Estimator::AddMeasurements(const Estimator::Measurements& measurements,
-                                const Estimator::Weights& weights) {
+void Estimator::AddMeasurements(const Measurements& measurements,
+                                const Weights& weights) {
   CHECK_EQ(measurements.cols(), weights.size());
   const auto new_size{measurements_.cols() + measurements.cols()};
   measurements_.conservativeResize(3, new_size);
@@ -23,13 +25,13 @@ void Estimator::AddMeasurements(const Estimator::Measurements& measurements,
   AddMeasurements_(measurements.cols());
 }
 
-const Estimator::Measurements& Estimator::GetMeasurements() const {
+const Measurements& Estimator::GetMeasurements() const {
   return measurements_;
 }
 
-const Estimator::Weights& Estimator::GetWeights() const { return weights_; }
+const Weights& Estimator::GetWeights() const { return weights_; }
 
-void Estimator::SetWeights(const Estimator::Weights& weights) {
+void Estimator::SetWeights(const Weights& weights) {
   CHECK_EQ(weights.size(), weights_.size());
   weights_ = weights;
   SetWeights_();

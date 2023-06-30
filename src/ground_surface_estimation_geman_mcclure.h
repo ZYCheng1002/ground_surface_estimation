@@ -11,7 +11,7 @@ class GroundEstimatorGM : public GroundEstimator{
 
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
-  void AddMeasurements(const Estimator::Measurements&) final;
+  void AddMeasurements(const Measurements&) final;
 
   void Estimate() final;
 };

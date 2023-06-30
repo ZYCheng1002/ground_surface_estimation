@@ -1,5 +1,10 @@
 add_subdirectory(algorithm)
-add_library(${PROJECT_NAME}.ground_estimation ground_surface_estimation.cc ground_surface_estimation_geman_mcclure.cpp)
+add_subdirectory(common)
+add_library(${PROJECT_NAME}.ground_estimation
+        ground_surface_estimation.cc
+        ground_surface_estimation_constant.cc
+        ground_surface_estimation_geman_mcclure.cc
+        )
 target_link_libraries(${PROJECT_NAME}.ground_estimation
         ${ThirdParty}
         ${PROJECT_NAME}.estimate
