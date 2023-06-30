@@ -6,6 +6,7 @@
 #define GROUND_SURFACE_ESTIMATION_YAML_IO_H
 #include <yaml-cpp/yaml.h>
 #include <glog/logging.h>
+#include <cassert>
 
 class YAML_IO {
  public:
