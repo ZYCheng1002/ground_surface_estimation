@@ -19,9 +19,13 @@ enum class GroundMethod {
   truncated_least_squares = 2
 };
 
+/// 多项式形式的平面参数
 template <typename T>
 using Representation = Eigen::Matrix<T, 8, 1>;
 
+/// 点到平面的平面参数 Ax + By + Cz + D = 0
+template <typename T>
+using Plane = Eigen::Matrix<T, 4, 1>;
 
 
 #endif  // GROUND_SURFACE_ESTIMATION_SYSTEM_COMMON_H

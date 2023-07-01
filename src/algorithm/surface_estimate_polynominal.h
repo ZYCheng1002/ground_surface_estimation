@@ -9,6 +9,8 @@
 #include "common/system_common.h"
 #include "surface_estimate_base.h"
 
+///@brief 使用曲面的多项表达式构建最小二乘进行优化
+/// f(x, y, z) = ax^2 + by^2 + cz^2 + dxy + exz + fyz + gx + hy + iz + j
 class SurfaceEstimatePoly final : public Estimator {
  public:
   SurfaceEstimatePoly(const CeresParam&, const EstimateParam&);

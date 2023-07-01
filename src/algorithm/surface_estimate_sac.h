@@ -9,7 +9,8 @@
 
 #include "sac_param.h"
 #include "surface_estimate_base.h"
-// struct SacParam;
+
+///@brief: 直接使用pcl中的ransac平面拟合算法进行平面拟合
 class SurfaceEstimateSac : public Estimator {
  public:
   using Plane = Eigen::Hyperplane<float, 3>;
