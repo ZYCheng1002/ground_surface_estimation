@@ -1,5 +1,5 @@
 ground_surface_estimation:
-  method: 3 # plane_estimation_ceres = 0, plane_estimation_sac = 1, uniform_b_spline_estimation_ceres = 2, uniform_b_spline_estimation_eigen = 3, none = 4
+  method: 4 # plane_estimation_ceres = 0, plane_estimation_sac = 1, uniform_b_spline_estimation_ceres = 2, uniform_b_spline_estimation_eigen = 3, none = 4
   num_iterations: 1
   point_labeler: 2 # constant = 0, geman_mcclure = 1, truncated_least_squares = 2
   distance_threshold: 0.4

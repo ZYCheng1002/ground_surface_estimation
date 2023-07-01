@@ -5,6 +5,7 @@
 #include "ground_surface_estimation.h"
 
 #include "algorithm/surface_estimate_sac.h"
+#include "algorithm/surface_estimate_polynominal.h"
 
 GroundEstimator::GroundEstimator(const GroundParam& param) {
   param_ = param;
@@ -34,6 +35,8 @@ std::unique_ptr<Estimator> GroundEstimator::CreateImpl(const SurfaceMethod& meth
   switch (method) {
     case SurfaceMethod::plane_sac:
       return std::make_unique<SurfaceEstimateSac>(param_.sac_param, param_.estimate_param);
+    case SurfaceMethod::polynomial_ceres:
+      return std::make_unique<SurfaceEstimatePoly>(param_.ceres_param, param_.estimate_param);
     default:
       return nullptr;
   }

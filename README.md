@@ -41,6 +41,7 @@ Algorithm reference for this excellent project: [pointcloud_surface][2]
 
 ```bash
 git clone https://github.com/ZYCheng1002/ground_surface_estimation.git
+./build_thirdparty.sh
 mkdir build && cd build
 cmake ..
 make -j8
@@ -57,6 +58,14 @@ make -j8
 - Ground fitting using SAC algorithm
 
 <img src="./doc/image-20230701151509494.png" alt="image-20230701151509494" style="zoom:50%;" />
+
+
+
+- Ground fitting using polynominal(ceres)
+
+<img src="./doc/image-20230702002912221.png" alt="image-20230702002912221" style="zoom:50%;" />
+
+<img src="./doc/image-20230702003026898.png" alt="image-20230702003026898" style="zoom:50%;" />
 
 
 

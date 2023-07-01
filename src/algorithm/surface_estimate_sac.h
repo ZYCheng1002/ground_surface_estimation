@@ -16,7 +16,7 @@ class SurfaceEstimateSac : public Estimator {
   SurfaceEstimateSac(const SacParam&, const EstimateParam&);
   void Estimate() final;
   std::unique_ptr<GroundSurface> GetGroundSurface() const final;
-  void Reset() final;
+  void Reset() override;
 
  private:
   void AddMeasurements_(int) final;

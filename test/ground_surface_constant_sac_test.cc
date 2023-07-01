@@ -11,19 +11,21 @@
 #include "tools/ground_filter.h"
 #include "tools/timer.h"
 DEFINE_string(pcd_path, "./data/map.pcd", "config file path");
+DEFINE_string(config_path, "./config/config.yaml", "config file path");
 int main(int argc, char** argv) {
   google::InitGoogleLogging(argv[0]);
   FLAGS_stderrthreshold = google::INFO;
   FLAGS_colorlogtostderr = true;
   google::ParseCommandLineFlags(&argc, &argv, true);
-
+  GlobalConfig::LoadConfig(FLAGS_config_path);
   CloudXYZITypePtr cloud_in(new CloudXYZIType());
   pcl::io::loadPCDFile(FLAGS_pcd_path, *cloud_in);
   /// 点云转 eigen
   auto cloud_eigen = cloud_in->getMatrixXfMap(3, 8, 0);
-  LOG(INFO) << cloud_eigen.size();
+  LOG(INFO) << "Current cloud size: " << cloud_eigen.size();
   /// 全部采用默认值
   GroundParam ground_param;
+  ground_param.Init();
   GroundEstimatorCon ground_estimate_gm(ground_param);
   ground_estimate_gm.AddMeasurements(cloud_eigen);
   ground_estimate_gm.Estimate();

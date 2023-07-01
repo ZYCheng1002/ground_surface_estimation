@@ -6,6 +6,7 @@
 #define GROUND_SURFACE_ESTIMATION_GROUND_PARAMTERS_H
 #include "algorithm/base_param.h"
 #include "algorithm/sac_param.h"
+#include "algorithm/ceres_param.h"
 #include "common/system_common.h"
 
 struct GroundParam {
@@ -23,6 +24,7 @@ struct GroundParam {
 
   EstimateParam estimate_param;
   SacParam sac_param;
+  CeresParam ceres_param;
   SurfaceMethod method      = SurfaceMethod::plane_sac;
   int num_iterations        = 3;
   float distance_threshold  = 1;
