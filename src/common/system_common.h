@@ -19,6 +19,9 @@ enum class GroundMethod {
   truncated_least_squares = 2
 };
 
+template <typename T>
+using Representation = Eigen::Matrix<T, 8, 1>;
+
 
 
 #endif  // GROUND_SURFACE_ESTIMATION_SYSTEM_COMMON_H

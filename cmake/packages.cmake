@@ -11,14 +11,11 @@ find_package(TBB REQUIRED)
 message(STATUS "TBB veision: " ${TBB_VERSION})
 
 # ceres
-if (DEFINED ${CERES_LIB})
-    find_package(Ceres REQUIRED PATHS ${CERES_LIB})
-else ()
-    find_package(Ceres REQUIRED)
-endif ()
-message(STATUS ${Ceres_VERSION})
-include_directories(${CERES_INCLUDE_DIRS})
-
+set(CERES_LIB ${PROJECT_SOURCE_DIR}/thirdparty/ceres)
+set(CERES_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/thirdparty/ceres/include)
+find_package(Ceres REQUIRED PATHS ${CERES_LIB})
+include_directories(${Ceres_INCLUDE_DIRS})
+message(STATUS "Ceres version: " ${Ceres_VERSION})
 
 # set thirdparty
 set(ThirdParty
