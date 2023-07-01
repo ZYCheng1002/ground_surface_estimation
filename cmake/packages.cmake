@@ -10,6 +10,16 @@ include_directories(${PCL_INCLUDE_DIRS})
 find_package(TBB REQUIRED)
 message(STATUS "TBB veision: " ${TBB_VERSION})
 
+# ceres
+if (DEFINED ${CERES_LIB})
+    find_package(Ceres REQUIRED PATHS ${CERES_LIB})
+else ()
+    find_package(Ceres REQUIRED)
+endif ()
+message(STATUS ${Ceres_VERSION})
+include_directories(${CERES_INCLUDE_DIRS})
+
+
 # set thirdparty
 set(ThirdParty
         ${PCL_LIBRARIES}
