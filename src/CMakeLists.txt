@@ -1,5 +1,6 @@
 add_subdirectory(algorithm)
 add_subdirectory(common)
+add_subdirectory(tools)
 add_library(${PROJECT_NAME}.ground_estimation
         ground_surface_estimation.cc
         ground_surface_estimation_constant.cc
