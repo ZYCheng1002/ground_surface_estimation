@@ -48,6 +48,18 @@ make -j8
 
 
 
+## Evaluation
+
+- Original point cloud visualization
+
+<img src="./doc/image-20230701151026072.png" alt="image-20230701151026072" style="zoom: 50%;" />
+
+- Ground fitting using SAC algorithm
+
+<img src="./doc/image-20230701151509494.png" alt="image-20230701151509494" style="zoom:50%;" />
+
+
+
 ## Task List
 
 - [ ] Overall universal structure
