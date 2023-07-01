@@ -9,7 +9,7 @@
 
 #include "ground_surface_estimation_constant.h"
 #include "tools/ground_filter.h"
-#include "common/point_type.h"
+#include "tools/timer.h"
 DEFINE_string(pcd_path, "./data/map.pcd", "config file path");
 int main(int argc, char** argv) {
   google::InitGoogleLogging(argv[0]);
@@ -37,16 +37,14 @@ int main(int argc, char** argv) {
   auto result_cloud = *cloud_in + *cloud;
   pcl::io::savePCDFile("./data/ground_generate.pcd", result_cloud);
   /// 分离地面
-  auto separate_result = Separate(ground_surface, 0.2, *cloud_in);
-  pcl::io::savePCDFile("./data/1.pcd", separate_result.without_ground_cloud);
-  pcl::io::savePCDFile("./data/2.pcd", separate_result.ground_cloud);
+  Timer::Evaluate([&]() { Separate(ground_surface, 0.21, *cloud_in); }, "point cloud ground separate");
+
+  pcl::io::savePCDFile("./data/1.pcd", *cloud_in);
   /// 去除地面点云
   struct MyCmp {
-    bool operator()(float dist, float threshold) const {
-      return dist <= threshold;
-    }
+    bool operator()(float dist, float threshold) const { return dist <= threshold; }
   };
-  Filter<MyCmp,PointXYZI>( ground_surface, 0.2, *cloud_in);
+  Timer::Evaluate([&]() { Filter<MyCmp, PointXYZI>(ground_surface, 0.2, *cloud_in); }, "point cloud ground remove");
   pcl::io::savePCDFile("./data/without_ground.pcd", *cloud_in);
-
+  Timer::PrintAll();
 }

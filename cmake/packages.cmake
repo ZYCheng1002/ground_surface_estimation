@@ -6,11 +6,16 @@ include_directories(${EIGEN3_INCLUDE_DIRS})
 find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
 
+# tbb
+find_package(TBB REQUIRED)
+message(STATUS "TBB veision: " ${TBB_VERSION})
+
 # set thirdparty
 set(ThirdParty
-  ${PCL_LIBRARIES}
-  ${CERES_LIBRARIES}
-  glog
-  gflags
-  yaml-cpp
-)
+        ${PCL_LIBRARIES}
+        ${CERES_LIBRARIES}
+        glog
+        gflags
+        yaml-cpp
+        TBB::tbb
+        )

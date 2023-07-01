@@ -4,6 +4,8 @@
 
 #ifndef GROUND_SURFACE_ESTIMATION_GROUND_FILTER_H
 #define GROUND_SURFACE_ESTIMATION_GROUND_FILTER_H
+#include <tbb/parallel_for.h>
+
 #include "common/num_types.h"
 #include "common/point_type.h"
 
@@ -54,32 +56,18 @@ void Filter(const GroundSurface::Ptr& ground_surface, const float& threshold, pc
   MakeUnordered(in_out);
 }
 
-template <typename Point_>
-GroundSeparateInfo Separate(const GroundSurface::Ptr& ground_surface,
-                            const float& threshold,
-                            pcl::PointCloud<Point_>& cloud_in) {
-  CloudXYZITypePtr ground_clouds(new CloudXYZIType());
-  CloudXYZITypePtr others_clouds(new CloudXYZIType());
-  for (std::size_t i = 0; i < cloud_in.size(); ++i) {
-    PointXYZI point_result;
-    auto point = cloud_in.points[i];
-    point_result.x = point.x;
-    point_result.y = point.y;
-    point_result.z = point.z;
-    float dis = ground_surface->Distance(point.getVector3fMap());
-    if (std::abs(dis) < threshold) {
-      point_result.intensity = 100;
-      ground_clouds->push_back(point);
+void Separate(const GroundSurface::Ptr& ground_surface,
+              const float& threshold,
+              pcl::PointCloud<pcl::PointXYZI>& cloud_in) {
+  tbb::parallel_for<size_t>(0, cloud_in.size(), [&](const auto& c) {
+    auto& p{cloud_in.points[c]};
+    auto d{ground_surface->Distance(p.getVector3fMap())};
+    if (d < threshold) {
+      p.intensity = 256;
     } else {
-      point_result.intensity = 1;
-      others_clouds->push_back(point);
+      p.intensity = 0;
     }
-  }
-  GroundSeparateInfo result;
-  result.ground_cloud = *ground_clouds;
-  result.without_ground_cloud = *others_clouds;
-  LOG(INFO) << result.ground_cloud.size();
-  return result;
+  });
 }
 
 #endif  // GROUND_SURFACE_ESTIMATION_GROUND_FILTER_H
